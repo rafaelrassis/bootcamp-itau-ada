@@ -5,9 +5,6 @@ on:
   push:
     branches:
     - backend
-    - backend2
-    paths:
-    - 'backend/**'
 
 jobs:
   build:
