@@ -19,3 +19,7 @@ jobs:
         mvn clean test
         mvn clean package
         
+        
+        
+        
+        
