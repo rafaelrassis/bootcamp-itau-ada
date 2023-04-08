@@ -30,6 +30,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Install Maven
+      run: |
+        apt-get update
+        apt-get -y install maven
 
   maven_build:
     needs: setup
