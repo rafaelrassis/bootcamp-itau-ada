@@ -1,17 +1,13 @@
 name: Build frontend app
 
-defaults:
-  run:
-    working-directory: "frontend/app"
-
 on:
   workflow_dispatch:
   push:
     branches:
-    - frontend
+      - frontend
     paths:
-    - '.github/workflows/frontend-ci.yml'
-    - 'frontend/**'
+      - '.github/workflows/frontend-ci.yml'
+      - 'frontend/**'
 
 env:
   USER: ${{ github.actor }}
@@ -22,7 +18,7 @@ env:
 
 
 jobs:
-  build:
+  build_node:
     runs-on: ubuntu-latest
 
     steps:
@@ -44,7 +40,7 @@ jobs:
   docker_build_and_push:
     needs: build_node
     name: Build and deploy Frontend with Docker
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     permissions:
       packages: write
 
@@ -63,13 +59,3 @@ jobs:
         file: ./frontend/Dockerfile
         push: true
         tags: ${{ env.REGISTRY }}/${{ env.USER }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
