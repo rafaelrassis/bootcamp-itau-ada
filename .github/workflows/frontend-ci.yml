@@ -24,7 +24,7 @@ jobs:
     - name: Running tests
       run: |
         apt-get update && apt-get -y install npm
-        npm install -g @angular/cli
+       # npm install -g @angular/cli
         ng test
     - name: Build docker image
       run: |
