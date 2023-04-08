@@ -37,5 +37,28 @@ jobs:
   #  - name: Executar testes
  #   run: ng test
 
+  docker_build_and_push:
+    needs: build_node
+    name: Build and deploy Frontend with Docker
+    runs-on: self-hosted
+    permissions:
+      packages: write
 
+    steps:
+    - name: Log into registry ${{ env.REGISTRY }}
+      uses: docker/login-action@v2
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ env.GH_TOKEN }}
+
+    - name: Build and push
+      uses: docker/build-push-action@v4
+      with:
+        context: ./frontend
+        file: ./frontend/Dockerfile
+        push: true
+        tags: ${{ env.REGISTRY }}/${{ env.USER }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
+        
+        
 
