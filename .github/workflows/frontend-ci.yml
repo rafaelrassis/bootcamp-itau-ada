@@ -52,6 +52,9 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ env.GH_TOKEN }}
 
+    - name: List frontend directory
+      run: ls frontend
+
     - name: Build and push
       uses: docker/build-push-action@v4
       with:
