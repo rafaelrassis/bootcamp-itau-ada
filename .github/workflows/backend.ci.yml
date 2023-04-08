@@ -8,9 +8,9 @@ on:
   workflow_dispatch:
   push:
     branches:
-    - backend
+    - add_actions_backend
     paths:
-    - '.github/workflows/backend.ci.yml'
+    - '.github/workflows/backend-ci.yml'
     - 'backend/**'
 
 env:
@@ -30,7 +30,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-   
 
   maven_build:
     needs: setup
@@ -61,6 +60,7 @@ jobs:
     - name: Log into registry 
       uses: docker/login-action@v2
       with:
+        registry: ${{ env.REGISTRY }}
         username: ${{ env.USER }}
         password: ${{ env.GH_TOKEN }}
 
@@ -70,4 +70,4 @@ jobs:
         context: ./backend
         file: ./backend/Dockerfile
         push: true
-    
+        tags: ${{ env.REGISTRY }}/${{ env.USER }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
