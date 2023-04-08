@@ -8,9 +8,9 @@ on:
   workflow_dispatch:
   push:
     branches:
-    - add_actions_backend
+    - backend
     paths:
-    - '.github/workflows/backend-ci.yml'
+    - '.github/workflows/backend.ci.yml'
     - 'backend/**'
 
 env:
