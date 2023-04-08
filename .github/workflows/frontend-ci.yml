@@ -10,7 +10,7 @@ on:
     branches:
     - frontend
     paths:
-    - '.github/workflows/frontend.ci.yml'
+    - '.github/workflows/frontend-ci.yml'
     - 'frontend/**'
 
 env:
