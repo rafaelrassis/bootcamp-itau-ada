@@ -6,8 +6,8 @@ on:
     branches:
       - frontend
     paths:
-      - '.github/workflows/frontend-ci.yml'
-      - 'frontend/**'
+      - '.github/workflows/frontend.ci.yml'
+     
 
 env:
   USER: ${{ github.actor }}
