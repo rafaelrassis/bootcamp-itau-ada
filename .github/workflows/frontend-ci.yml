@@ -20,35 +20,26 @@ env:
   IMAGE_NAME: bootcamp-frontend
   IMAGE_VERSION: 1.0.0
 
+
 jobs:
-  build_node:
-    name: Build Frontend app with npm
-    runs-on: ubuntu-latest #self-hosted
-    permissions:
-      packages: write
+  build:
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout do repositório
+      uses: actions/checkout@v2
 
-    - name: Setup node
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16
+    - name: Atualizar repositórios do sistema
+      run: sudo apt-get update
 
-    - name: Install Angular
-      run: npm install -g @angular/cli
+    - name: Instalar npm
+      run: sudo apt-get -y install npm
 
-    - name: Install dependencies
-      run: npm install
+    - name: Instalar Angular CLI
+      run: sudo npm install -g @angular/cli
 
-    # - name: Run server
-    #   run: npm run start --port 9876 &
-
-    # - name: Sleep for 15 seconds
-    #   run: sleep 15
-
-    - name: Run tests
-      run: npm run test
+    - name: Executar testes
+      run: ng test
 
   docker_build_and_push:
     needs: build_node
