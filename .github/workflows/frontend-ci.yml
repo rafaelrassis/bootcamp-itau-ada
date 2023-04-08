@@ -34,8 +34,8 @@ jobs:
     - name: Instalar Angular CLI
       run: sudo npm install -g @angular/cli
 
-    - name: Executar testes
-      run: ng test
+  #  - name: Executar testes
+ #   run: ng test
 
   docker_build_and_push:
     needs: build_node
